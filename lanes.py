@@ -45,6 +45,9 @@ one color space to another. We'll be converting lane image. And the second argum
 We can use the flag C-v to dot color underscore R G B to gray. Very intuitive.And now instead of showing the color 
 image will show the gray image. If we go to our terminal Python Layne's that p y everything works out accordingly. 
 This was step number one. Step number two of edge detection will be two.
+
+Step 1 - Convert Image to Grayscale
+Step 2 - Reduce Noise (Gaussian Filter)
 """
 
 image = cv2.imread('./Image/test_image.jpg')
