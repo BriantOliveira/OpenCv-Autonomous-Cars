@@ -11,6 +11,7 @@ intensity a sharp change in color before diving into this.
 It's important to recognize that an image can mirror it as a matrix an array of pixels a pixel contains
 the light intensity at some location in the image.Each pixels intensity denoted by a numeric value that ranges 
 from 0 to 255 and intensity value of zero indicates no intensity.
+
 [0 0 255 255]
 [0 0 255 255]
 [0 0 255 255]
@@ -53,14 +54,28 @@ Step 2 - Reduce Noise (Gaussian Filter)
 image = cv2.imread('./Image/test_image.jpg')
 lane_image = np.copy(image)
 
-# Converting the image to gray
-gray = cv2.cvtColor(lane_image, cv2.COLOR_BGR2GRAY)
-
 # Converting image with the rbg
 # cv2.imshow('result', image)
 
+# Converting the image to gray
+gray = cv2.cvtColor(lane_image, cv2.COLOR_BGR2GRAY)
+
+"""
+Averaging out the pixels in the image to reduce noise will be done with the kernel.
+Essentially this kernel of normally distributed numbers is run across our entire image 
+and sets each pixel about equal to the weighted average of its neighboring pixels thus 
+smoothing our image. We're not going to go over kernel convolution and how it does it 
+just know that when we write this line of code inside of our editor blur is equal to C-v 
+to dog Gosden blur what we're doing is applying a gaussian blur on a greyscale image with 
+a 5 by 5 kernel the size of the kernel is dependent on specific situations a 5 by 5 kernel 
+is a good size for most cases. But ultimately what that will do is returning a new image that 
+we simply called blur. Applying the gaussian blur by involving our image with a kernel of Gaussian 
+values reduces noise in our image back to our project set. Blur is equal to C-v to the gaussian blur.
+"""
+blur = cv2.GaussianBlur(gray, (5, 5), 0)
+
 # Display image until you press any key of the keyboard 
-cv2.imshow('result', gray)
+cv2.imshow('result', blur)
 cv2.waitKey(0)
 
 
