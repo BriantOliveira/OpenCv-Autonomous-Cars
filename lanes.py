@@ -74,8 +74,28 @@ values reduces noise in our image back to our project set. Blur is equal to C-v 
 """
 blur = cv2.GaussianBlur(gray, (5, 5), 0)
 
+"""
+A small derivative is a small change in intensity whereas a big 
+derivative is a big change by computing the derivative in all directions 
+of the image. We're computing the gradients. Since recall the gradient 
+is the change in brightness over a series of pixels. So when we call 
+the kidney function it does all of that for us. It computes the gradient 
+in all directions of our blurred image CH and is then going to trace 
+our strongest gradients as a series of white pixels. But notice these 
+two arguments low threshold and high threshold. While this actually 
+allows us to isolate the adjacent pixels that follow the strongest 
+gradients if the gradient is larger than the upper threshold then it 
+is accepted as an edge pixel. If it is below the lower threshold it is
+rejected. If the gradient is between the thresholds then it will be 
+accepted only if it is connected to a strong edge. The documentation 
+itself recommends to use a ratio of 1 to 2 or 1 to 3 as such will 
+use a low high threshold ratio of 1 to 3 50 to 150.
+"""
+
+canny = cv2.Canny(blur, 50, 150)
+
 # Display image until you press any key of the keyboard 
-cv2.imshow('result', blur)
+cv2.imshow('result', canny)
 cv2.waitKey(0)
 
 
